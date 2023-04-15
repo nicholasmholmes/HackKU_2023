@@ -22,3 +22,6 @@ class Deck:
 
     def __str__(self):
         return f"Deck of {len(self.cards)} cards"
+    
+     def __repr__(self):
+        return f"Deck of {len(self.cards)} cards"
