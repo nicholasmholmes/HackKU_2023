@@ -87,8 +87,7 @@ class Crazy:
                         choice = input('Invalid Choice. Try Again: ')
                 else:
                     print("Oops! Looks like you can't play! You will now draw.")
-                    choice = 'd'
-                print(choice)       
+                    choice = 'd'     
                     
                 if choice.lower() == 'd':
                     new_card = self._deck.draw()
