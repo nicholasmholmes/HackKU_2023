@@ -6,7 +6,7 @@ class Card:
     def getSuit(self):
         return self._suit
 
-    def getValue(self):
+    def getRank(self):
         return self._rank
 
     def __lt__(self, other):
