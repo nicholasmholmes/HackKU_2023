@@ -32,14 +32,23 @@ class Crazy:
     def player_draw(self, current_player):
         new_card = self._deck.draw()
         current_player.hand.append(new_card)
-        if current_player.valid_move(new_card) is True:
-            # need to make new_card get played
+        if current_player.valid_move(new_card):
+            self.play_card(self, current_player)
 
         else:
-            pass
+            self.next_turn()
+        
+
+    def play_card(self, current_player, index):
+        current_card = current_player.play_card
+        self.next_turn()
+        
 
     # this is unfinished, more of an idea of what we can do
     def next_turn(self):
-        current_player = self.players[self.current_player_index]
-        # do something with the current player
         self.current_player_index = (self.current_player_index + 1) % len(self.players)
+
+
+
+
+        
