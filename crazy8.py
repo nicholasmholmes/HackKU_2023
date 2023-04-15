@@ -13,20 +13,13 @@ class Crazy:
     def start(self):
         random.shuffle(self._deck.cards)
         for i in range(7):
-            self._player.hand.append(self._deck.cards[i])
-            self._deck.deal
+            self._player.hand.append(self._deck.deal)
         for i in range(7):
-            self._cpu1.hand.append(self._deck.cards[i])
-            self._deck.deal
+            self._cpu1.hand.append(self._deck.deal)
         for i in range(7):
-            self._cpu2.hand.append(self._deck.cards[i])
-            self._deck.deal
+            self._cpu2.hand.append(self._deck.deal)
         for i in range(7):
-            self._cpu3.hand.append(self._deck.cards[i])
-            self._deck.deal
-
+            self._cpu3.hand.append(self._deck.deal)
+        
         for i in range(7):
             print(self._cpu1.hand[i])
-
-
-
