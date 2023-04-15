@@ -10,6 +10,8 @@ class Card:
         self.dragging = False
         self.start_x = 0
         self.start_y = 0
+        self.width = width
+        self.height = height
 
     def getSuit(self):
         return self._suit
@@ -48,7 +50,9 @@ class Card:
 
     def on_drag(self, event):
         if self.dragging:
-            x = self.canvas.coords(self.id)[0] + event.x - self.start_x
-            y = self.canvas.coords(self.id)[1] + event.y - self.start_y
-            self.canvas.coords(self.id, x, y, x+self.width, y+self.height)
+           dx = event.x - self.start_x
+           dy = event.y - self.start_y
+           self.canvas.move(self.id, dx, dy)
+           self.start_x = event.x
+           self.start_y = event.y
 
