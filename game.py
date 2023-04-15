@@ -63,9 +63,12 @@ class Game:
         print("Server started")
 
     def start_client(self, host):
+        print('starting connection')
         self.client = GameClient(host, 5555)
+        print('connecting...')
         self.game_thread = threading.Thread(target=self.run_client)
         self.game_thread.start()
+        print('starting thread')
 
     def run_server(self):
         print('1')
