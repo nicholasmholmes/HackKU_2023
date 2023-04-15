@@ -9,10 +9,6 @@ class Deck:
         self.cards = [Card(suit, rank) for suit in suits for rank in ranks]
         self.discard_pile = []
 
-    def shuffle(self):
-        random.shuffle(self.cards)
-        self.discard_pile = []
-
     def deal(self, num_cards=1):
         if len(self.cards) < num_cards:
             self.reshuffle()
@@ -28,6 +24,10 @@ class Deck:
             temp = self.discard_pile.pop()
             self.cards.append(temp)
         random.shuffle(self.cards)
+
+    def draw(self):
+        value = self.cards.pop()
+        return value
 
     def __str__(self):
         return f"Deck of {len(self.cards)} cards"

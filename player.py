@@ -1,4 +1,4 @@
-class CPU:
+class Player:
     def __init__(self):
         self.hand = []
 
@@ -6,7 +6,7 @@ class CPU:
         value = self.hand[index]
         self.hand.remove(index)
         return value
-    
+
     def __str__(self):
         return f"Hand: {self.hand}"
 
