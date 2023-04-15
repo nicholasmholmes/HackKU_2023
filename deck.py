@@ -19,7 +19,7 @@ class Deck:
         return dealt_cards
 
     def reshuffle(self):
-        while len(self.discard_pile) != 0:
+        while len(self.discard_pile) > 1:
             temp = self.discard_pile.pop()
             self.cards.append(temp)
         random.shuffle(self.cards)
