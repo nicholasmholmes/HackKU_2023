@@ -1,8 +1,10 @@
-from kings_corners import KingsCorners
-from executive import Executive
+from crazy8 import Crazy
+
 
 def main():
-    print(hand)
+    game = Crazy()
+    game.start()
+
 
 if __name__ == "__main__":
     main()
