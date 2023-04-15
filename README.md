@@ -1,8 +1,8 @@
 # HackKU_2023
-Hack KU event, team project made by Nick, Alex, Colin, and Raymann.
+Hack KU event, team project made by Nicholas Holmes, Alex Doehring, Colin Treanor, and Raymann Singh.
 We are all freshmen Computer Science students at Kansas University.
 
-For this event we are trying to make an app that allows users to play different card games.
+For this event we are trying to make a webpage that allows users to play the card game Crazy Eights. 
 
 Game: Crazy Eights
  How to play:
