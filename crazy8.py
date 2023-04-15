@@ -22,3 +22,8 @@ class Crazy:
         print(f'CPU 1 hand: {self._cpu1.hand}')
         print(f'CPU 2 hand: {self._cpu2.hand}')
         print(f'CPU 3 hand: {self._cpu3.hand}')
+        
+    def is_valid_move(self, card):
+        if self._deck.discard_pile[len(self._deck.discard_pile) - 1].getSuit() == card.getSuit() or self._deck.discard_pile[len(self._deck.discard_pile) - 1].getRank() == card.getRank():
+            return True
+        return False
