@@ -16,7 +16,6 @@ class Deck:
         for i in range(num_cards):
             card = self.cards.pop()
             dealt_cards.append(card)
-            self.discard_pile.append(card)
         return dealt_cards
 
     def reshuffle(self):
