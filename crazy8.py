@@ -6,10 +6,38 @@ import random
 class Crazy:
     def __init__(self, players):
         self._deck = Deck()
-        self._current_player_index = 0
+        self.current_player_index = 0
         self.player_list = []
         for x in range(players):
             self.player_list.append(Player())
+
+    def is_valid(self, card):
+        if self._deck.discard_pile[len(self._deck.discard_pile)-1].getSuit() == card.getSuit() or \
+           self._deck.discard_pile[len(self._deck.discard_pile)-1].getRank() == card.getRank():
+            return True
+         return False
+
+    def player_draw(self, current_player):
+        new_card = self._deck.draw()
+        current_player.hand.append(new_card)
+        if current_player.is_valid(new_card):
+            self.play_card(self, current_player)
+
+        else:
+            self.next_turn()
+        
+
+    def play_card(self, current_player, index):
+        played_card = current_player.play_card(index)
+        if is_valid(played_card):
+            self._deck.discard_pile.append(played_card)
+            self.next_turn()
+        else: self.player_draw
+        
+
+    # this is unfinished, more of an idea of what we can do
+    def next_turn(self):
+        self.current_player_index = (self.current_player_index + 1) % len(self.player_list)
 
 
     def start(self):
@@ -26,20 +54,8 @@ class Crazy:
 
         self.player_draw()
 
-    def valid_move(self, card):
-        pass
 
-    def player_draw(self, current_player):
-        new_card = self._deck.draw()
-        current_player.hand.append(new_card)
-        if current_player.valid_move(new_card) is True:
-            # need to make new_card get played
 
-        else:
-            pass
 
-    # this is unfinished, more of an idea of what we can do
-    def next_turn(self):
-        current_player = self.players[self.current_player_index]
-        # do something with the current player
-        self.current_player_index = (self.current_player_index + 1) % len(self.players)
+
+        
