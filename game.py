@@ -144,7 +144,7 @@ def main():
                     game = Game('client')
                     game.start_client(host)
                     game.running = True
-        screen.fill((0, 0, 0))
+        screen.fill((0, 120, 0))
         screen.blit(server_button, server_button_rect)
         screen.blit(client_button, client_button_rect)
         pygame.display.update()
@@ -152,6 +152,7 @@ def main():
         if game is not None and game.player == 'server' and game.server.game is not None:
             break
     while True:
+        print("working")
         # Main game loop here
         pass
 
