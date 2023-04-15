@@ -58,7 +58,7 @@ class Crazy:
             if current_player.hand == 0:
                 win = True
                 print(f'Player {self.current_player_index} wins!')
-            self.next_turn
+            self.next_turn()
             
             
 
