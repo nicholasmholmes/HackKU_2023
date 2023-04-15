@@ -57,7 +57,7 @@ class Game:
         self.running = False
 
     def start_server(self):
-        self.server = GameServer('', 5555)
+        self.server = GameServer('localhost', 5555)
         self.server_thread = threading.Thread(target=self.server.accept_players)
         self.server_thread.start()
         print("Server started")
