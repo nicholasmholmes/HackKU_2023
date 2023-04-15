@@ -17,7 +17,7 @@ class Crazy:
             return True
         return False
 
-    def player_draw(self, current_player):
+    def draw_card(self, current_player):
         new_card = self._deck.draw()
         current_player.hand.append(new_card)
         if current_player.is_valid(new_card):
@@ -32,7 +32,7 @@ class Crazy:
             self._deck.discard_pile.append(played_card)
             self.next_turn()
         else:
-            self.player_draw(current_player)
+            self.draw_card(current_player)
 
     # this is unfinished, more of an idea of what we can do
     def next_turn(self):
@@ -47,4 +47,4 @@ class Crazy:
         while not win:
             pass
 
-        self.player_draw(current_player)  # need to indicate current player later
+        self.draw_card(current_player)  # need to indicate current player later
