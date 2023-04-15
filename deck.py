@@ -26,6 +26,8 @@ class Deck:
         random.shuffle(self.cards)
 
     def draw(self):
+        if len(self.cards) < 1:
+            self.reshuffle()
         value = self.cards.pop()
         return value
 
