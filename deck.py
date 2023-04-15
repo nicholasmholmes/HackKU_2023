@@ -6,15 +6,9 @@ class Deck:
     def __init__(self):
         ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
         suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
-        self.cards = [Card(rank, suit) for rank in ranks for suit in suits]
-        self.discards = []
+        self.cards = [Card(suit, rank) for suit in suits for rank in ranks]
 
-    def add_to_deck(self, car):
-        self.cards.append(car)
-    
     def shuffle(self):
-        while len(self.discards) != 0:
-            self.add_to_deck(self.discards.pop())
         random.shuffle(self.cards)
 
     def deal(self):
@@ -22,6 +16,6 @@ class Deck:
 
     def __str__(self):
         return f"Deck of {len(self.cards)} cards"
-    
-     def __repr__(self):
+
+    def __repr__(self):
         return f"Deck of {len(self.cards)} cards"
