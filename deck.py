@@ -7,12 +7,26 @@ class Deck:
         ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
         suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
         self.cards = [Card(suit, rank) for suit in suits for rank in ranks]
+        self.discard_pile = []
 
     def shuffle(self):
         random.shuffle(self.cards)
+        self.discard_pile = []
 
-    def deal(self):
-        return self.cards.pop()
+    def deal(self, num_cards=1):
+        if len(self.cards) < num_cards:
+            self.reshuffle()
+        dealt_cards = []
+        for i in range(num_cards):
+            card = self.cards.pop()
+            dealt_cards.append(card)
+            self.discard_pile.append(card)
+        return dealt_cards
+
+    def reshuffle(self):
+        self.cards = self.discard_pile
+        random.shuffle(self.cards)
+        self.discard_pile = []
 
     def __str__(self):
         return f"Deck of {len(self.cards)} cards"
