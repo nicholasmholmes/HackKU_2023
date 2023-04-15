@@ -24,9 +24,10 @@ class Deck:
         return dealt_cards
 
     def reshuffle(self):
-        self.cards = self.discard_pile
+        while len(self.discard_pile) != 0:
+            temp = self.discard_pile.pop()
+            self.cards.append(temp)
         random.shuffle(self.cards)
-        self.discard_pile = []
 
     def __str__(self):
         return f"Deck of {len(self.cards)} cards"
