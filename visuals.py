@@ -1,8 +1,11 @@
 import tkinter as tk
+import os
 
 root = tk.Tk()
 
 root.title("My Window")
 root.geometry("300x200")
-root.mainloop()
 
+
+# Should be last
+root.mainloop()
