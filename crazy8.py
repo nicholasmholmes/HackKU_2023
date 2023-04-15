@@ -4,7 +4,7 @@ import random
 
 
 class Crazy:
-    def __init__(self, players):
+    def __init__(self, players=4):
         self._deck = Deck()
         self.current_player_index = 0
         self.player_list = []
