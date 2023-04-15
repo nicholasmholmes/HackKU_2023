@@ -13,10 +13,10 @@ class Crazy:
 
     def start(self):
         random.shuffle(self._deck.cards)
-        self._player.hand.append(self._deck.deal(7))
-        self._cpu1.hand.append(self._deck.deal(7))
-        self._cpu2.hand.append(self._deck.deal(7))
-        self._cpu3.hand.append(self._deck.deal(7))
+        self._player.hand = self._deck.deal(7)
+        self._cpu1.hand = self._deck.deal(7)
+        self._cpu2.hand = self._deck.deal(7)
+        self._cpu3.hand = self._deck.deal(7)
 
         print(f'Player 1 hand: {self._player.hand}')
         print(f'CPU 1 hand: {self._cpu1.hand}')
