@@ -56,15 +56,18 @@ class Crazy:
         while not win:
             current_player = self.player_list[self.current_player_index]
             card_index = 0
+            valid_play = False
             if self.current_player_index != 0:
                 for card in current_player.hand:
                     if self.is_valid(card):
                         self.play_card(current_player, card_index)
+                        valid_play = True
                         break
-                    elif card_index == len(current_player.hand) - 1:
-                        self.draw_card(current_player)
                     else:
                         card_index += 1
+                        
+                if not valid_play:
+                    self.draw_card(current_player)
             else:
                 print('\nYour Hand: ')
                 x = 1
@@ -81,7 +84,7 @@ class Crazy:
                     else:
                         card_index += 1
                 
-                if card_index != len(self.user.hand) - 1:        
+                if card_index != len(self.user.hand):        
                     choice = input('What would you like to do? (Type p for play or d for draw): ')
                     while choice.lower() != 'd' and choice.lower() != 'p':
                         choice = input('Invalid Choice. Try Again: ')
