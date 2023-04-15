@@ -28,23 +28,45 @@ class Crazy:
 
     def play_card(self, current_player, index):
         played_card = current_player.play_card(index)
-        if self.is_valid(played_card):
-            self._deck.discard_pile.append(played_card)
-            self.next_turn()
-        else:
-            self.draw_card(current_player)
+        self._deck.discard_pile.append(played_card)
+        
 
     # this is unfinished, more of an idea of what we can do
     def next_turn(self):
         self.current_player_index = (self.current_player_index + 1) % len(self.player_list)
 
-    def start(self):
+    def set_up(self):
         random.shuffle(self._deck.cards)
         for player in self.player_list:
             player.hand = self._deck.deal(7)
 
+    def start(self):
+        self.set_up()
         win = False
         while not win:
-            pass
+            current_player = self.player_list[self.current_player_index]
+            card_index = 0
+            for card in current_player.hand:
+                if self.is_valid(card):
+                    self.play_card(current_player, card_index)
+                    break
+                elif card_index == len(current_player.hand) - 1:
+                    self.draw_card(current_player)
+                else:
+                    card_index += 1
 
-        self.draw_card(current_player)  # need to indicate current player later
+            if current_player.hand == 0:
+                win = True
+                print(current_player + ' wins!')
+            self.next_turn
+            
+            
+
+
+
+
+
+
+
+
+    
