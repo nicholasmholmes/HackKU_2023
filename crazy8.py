@@ -46,7 +46,7 @@ class Crazy:
 
     # this is unfinished, more of an idea of what we can do
     def next_turn(self):
-        self.current_player_index = (self.current_player_index + 1) % len(self.players)
+        self.current_player_index = (self.current_player_index + 1) % len(self.player_list)
 
 
 
