@@ -4,7 +4,7 @@ class Player:
 
     def play_card(self, index):
         value = self.hand[index]
-        self.hand.remove(index)
+        self.hand.remove(value)
         return value
 
     def __str__(self):
