@@ -37,7 +37,10 @@ class Crazy:
             self.draw_card(current_player)
 
     def next_turn(self):
-        self.current_player_index = (self.current_player_index + 1) % len(self.player_list)
+        if self.current_player_index == len(self.player_list) - 1:
+            self.current_player_index = 0
+        else:
+            self.current_player_index += 1
 
     def setup(self):
         random.shuffle(self._deck.cards)
