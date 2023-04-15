@@ -5,10 +5,13 @@ import time, math
 pygame.init()
 
 # Set window size
-window_size = (1200, 800)
+screen_info = pygame.display.Info()
+sw = screen_info.current_w
+sh = screen_info.current_h
+window_size = (int(sw - sw/2), int(sh - sh/2))
 
 # Create window
-window = pygame.display.set_mode(window_size)
+window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
 pygame.display.set_caption("crazy8")
 
 # Fill background color
@@ -70,42 +73,49 @@ def display_persistent_text(text, x, y):
     text_rect.bottomleft = (x, y)
     window.blit(text_surface, text_rect)
 
-def updateHand(player):
+def updateHand(handSize):
     colorTemp = (0,255,0)
-    handSize = 4
     
     for i in range(handSize):
-        pos_handsize = (window_size[0] // (handSize + 1)) * (i + 1)
         size = (100,140)
-        pos = (pos_handsize - size[0] // 2, 150)
+        pos = (300 + ((50 + size[0]) * i), window_size[1] - 150)
         attr = pygame.Rect(pos, size)
         pygame.draw.rect(window, colorTemp, attr)
     pygame.display.flip()
 
-move = 0
-
-# Main game loop
-running = True
-while running:
-    # Handle events
+def handleEvents():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            pygame.quit()
+            return running
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_ESCAPE]:
+        running = False
+        pygame.quit()
+        return running
+
+# Main game loop
+running = True
+move = 0
+while running:
+    # Handle events
+    handleEvents()
 
     # Display welcoming text and button
     if move == 0:
         display_text("Hello, Player!", 3)
         display_persistent_text("Hand:", 150, window_size[1] - 50)
-        updateHand(0)
+        updateHand(7)
         move += 1
 
     if display_button("Play card", 150, window_size[1] - 200, 100, 50, (255, 0, 0), (200, 0, 10)):
         display_text("Card played!", 1.5)
-        updateHand(0)
+        updateHand(7)
     
     if display_button("Draw card", 250, window_size[1] - 200, 100, 50, (255, 0, 0), (200, 0, 10)):
         display_text("Card drawn!", 1.5)
-        updateHand(0)
+        updateHand(7)
     
 
 
