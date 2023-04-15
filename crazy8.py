@@ -20,7 +20,7 @@ class Crazy:
     def draw_card(self, current_player):
         new_card = self._deck.draw()
         current_player.hand.append(new_card)
-        if current_player.is_valid(new_card):
+        if self.is_valid(new_card):
             self.play_card(self, current_player, len(current_player.hand)-1)
 
         else:
