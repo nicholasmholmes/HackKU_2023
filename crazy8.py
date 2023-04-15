@@ -21,7 +21,7 @@ class Crazy:
         new_card = self._deck.draw()
         current_player.hand.append(new_card)
         if self.is_valid(new_card):
-            self.play_card(self, current_player, len(current_player.hand)-1)
+            self.play_card(current_player, len(current_player.hand)-1)
 
         else:
             self.next_turn()
