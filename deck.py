@@ -16,16 +16,17 @@ class Deck:
         for i in range(num_cards):
             card = self.cards.pop()
             dealt_cards.append(card)
-            self.discard_pile.append(card)
         return dealt_cards
 
     def reshuffle(self):
-        while len(self.discard_pile) != 0:
+        while len(self.discard_pile) > 1:
             temp = self.discard_pile.pop()
             self.cards.append(temp)
         random.shuffle(self.cards)
 
     def draw(self):
+        if len(self.cards) < 1:
+            self.reshuffle()
         value = self.cards.pop()
         return value
 
