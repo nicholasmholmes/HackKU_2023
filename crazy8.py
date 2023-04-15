@@ -39,6 +39,8 @@ class Crazy:
         random.shuffle(self._deck.cards)
         for player in self.player_list:
             player.hand = self._deck.deal(7)
+        first_card = self._deck.pop()
+        self._deck.discard_pile.append(first_card)
 
     def start(self):
         self.set_up()
