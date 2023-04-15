@@ -6,7 +6,7 @@ import random
 class Crazy:
     def __init__(self, players):
         self._deck = Deck()
-        self._current_player_index = 0
+        self.current_player_index = 0
         self.player_list = []
         for x in range(players):
             self.player_list.append(Player())
