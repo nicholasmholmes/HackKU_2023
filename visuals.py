@@ -1,8 +1,14 @@
 import pygame
 import time, math
+from crazy8 import Crazy
 
 # Initialize Pygame
 pygame.init()
+
+# Init crazy8
+game = Crazy()
+game.setup()
+print(game.player_list[0].hand)
 
 # Set window size
 screen_info = pygame.display.Info()
