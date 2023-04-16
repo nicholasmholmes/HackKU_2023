@@ -96,11 +96,8 @@ class Crazy:
                     new_card = self._deck.draw()
                     print('You drew a ' + str(new_card))
                     if self.is_valid(new_card):
-                        play_drawn_card = input('Would you like to play this card? y or n: ')
-                        if play_drawn_card.lower() == 'y':
-                            self._deck.discard_pile.append(new_card)
-                        else:                           
-                            self.user.hand.append(new_card)
+                        self._deck.discard_pile.append(new_card)
+                        print('You played the ' + str(new_card))
                     else:
                         self.user.hand.append(new_card)
 
