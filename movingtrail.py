@@ -23,7 +23,8 @@ direction = -1  # negative y-direction
 
 # Set up the trail surface
 trail_surface = pygame.Surface((image_width, image_height), pygame.SRCALPHA)
-trail_surface.set_alpha(128)
+trail_color = (128, 128, 128, 128)  # grey trail color
+trail_surface.fill(trail_color)
 trail_length = 10
 trail_positions = []
 
