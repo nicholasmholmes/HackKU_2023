@@ -154,8 +154,56 @@ class Crazy:
             if self.current_player_index == 0:
                 win = self.user_turn()
             else:
-                win = self.computer_turn(current_player)
-            self.next_turn()
+                print('\nYour Hand: ')
+                x = 1
+                for card in self.user.hand:
+                    print(str(x) + ': ' + str(card))
+                    x+=1
+                    
+                print('\nTop card: ' + str(self._deck.discard_pile[len(self._deck.discard_pile)-1]))
+
+                card_index = 0
+                for card in self.user.hand:
+                    if self.is_valid(card):
+                        break
+                    else:
+                        card_index += 1
+                
+                if card_index != len(self.user.hand):        
+                    choice = input('What would you like to do? (Type p for play or d for draw): ')
+                    while choice.lower() != 'd' and choice.lower() != 'p':
+                        choice = input('Invalid Choice. Try Again: ')
+                else:
+                    print("Oops! Looks like you can't play! You will now draw.")
+                    choice = 'd'       
+                    
+                if choice.lower() == 'd':
+                    new_card = self._deck.draw()
+                    print('You drew a ' + str(new_card))
+                    if self.is_valid(new_card):
+                        play_drawn_card = input('Would you like to play this card? y or n: ')
+                        if play_drawn_card.lower() == 'y':
+                            self._deck.discard_pile.append(new_card)
+                        else:                           
+                            self.user.hand.append(new_card)
+                    else:
+                        self.user.hand.append(new_card)
+
+                elif choice.lower() == 'p':
+                    play_index = int(input('Which card would you like to play?: '))
+                    while play_index < 1 or play_index > len(self.user.hand) or not self.is_valid(self.user.hand[play_index-1]):
+                        play_index = int(input('Invalid choice. Try Again: '))
+                    print('You played the ' + str(self.user.hand[play_index-1]))
+                    played_card = self.user.hand[play_index-1]
+                    self.user.hand.remove(played_card)
+                    self._deck.discard_pile.append(played_card)
+                print()
+            
+            if len(current_player.hand) < 1:
+                win = True
+                print(f'Player {self.current_player_index} wins!')
+            else:
+                self.next_turn()
 
 
 
