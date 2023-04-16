@@ -1,6 +1,6 @@
 import pygame
 import time, math
-from crazy8CRAZY import Crazy
+from crazy8 import Crazy
 
 # Initialize Pygame
 pygame.init()
@@ -39,28 +39,28 @@ for i in range(4):
         
 draw_pile_img = pygame.image.load('cards/back_of_card.png')
 draw_pile_img = pygame.transform.scale(draw_pile_img, (106, 146))
-window.blit(draw_pile_img, (sw/2-106, sh/2-73))
+window.blit(draw_pile_img, (int(window_size[0]/2)- 110, int(window_size[1]/2) - 152/2))
 
 discard_pile_img = card_image_list[str(game._deck.discard_pile[len(game._deck.discard_pile)-1]).lower()]
 discard_pile_img = pygame.transform.scale(discard_pile_img, (100, 140))
 
-window.blit(draw_pile_img, (sw/2-30, 0))
-window.blit(draw_pile_img, (sw/2-50, 0))
-window.blit(draw_pile_img, (sw/2-70, 0))
-window.blit(draw_pile_img, (sw/2-90, 0))
+window.blit(draw_pile_img, (window_size[0]/2-30, 0))
+window.blit(draw_pile_img, (window_size[0]/2-50, 0))
+window.blit(draw_pile_img, (window_size[0]/2-70, 0))
+window.blit(draw_pile_img, (window_size[0]/2-90, 0))
 
 draw_pile_img = pygame.transform.rotate(draw_pile_img, 90)
-window.blit(draw_pile_img, (0, sh/2-30))
-window.blit(draw_pile_img, (0, sh/2-50))
-window.blit(draw_pile_img, (0, sh/2-70))
-window.blit(draw_pile_img, (0, sh/2-90))
+window.blit(draw_pile_img, (0, window_size[1]/2-30))
+window.blit(draw_pile_img, (0, window_size[1]/2-50))
+window.blit(draw_pile_img, (0, window_size[1]/2-70))
+window.blit(draw_pile_img, (0, window_size[1]/2-90))
 
-window.blit(draw_pile_img, (sw-140, sh/2-90))
-window.blit(draw_pile_img, (sw-140, sh/2-70))
-window.blit(draw_pile_img, (sw-140, sh/2-50))
-window.blit(draw_pile_img, (sw-140, sh/2-30))
+window.blit(draw_pile_img, (window_size[0]-140, window_size[1]/2-90))
+window.blit(draw_pile_img, (window_size[0]-140, window_size[1]/2-70))
+window.blit(draw_pile_img, (window_size[0]-140, window_size[1]/2-50))
+window.blit(draw_pile_img, (window_size[0]-140, window_size[1]/2-30))
 
-window.blit(discard_pile_img, (sw/2, sh/2-70))
+window.blit(discard_pile_img, (window_size[0]/2, window_size[1]/2 - 146/2))
 
 pygame.display.update()
 
@@ -137,11 +137,11 @@ def display_persistent_text(text, x, y, fsize):
     window.blit(text_surface, text_rect)
 
 def updateHand(handSize):
-    colorTemp = (255,255,255)
     background_rect = pygame.Rect(0, window_size[1] - 170, window_size[0], window_size[1])
     pygame.draw.rect(window, (0,0,0), background_rect)
     discard_pile_img = card_image_list[str(game._deck.discard_pile[len(game._deck.discard_pile)-1]).lower()]
     discard_pile_img = pygame.transform.scale(discard_pile_img, (100, 140))
+    window.blit(discard_pile_img, (window_size[0]/2, window_size[1]/2 - 146/2))
     pygame.display.update()
     
     for i in range(handSize):
@@ -195,91 +195,28 @@ def clearPlaySpace():
 
 # Main game loop
 running = True
-move = 0
-playerTurn = 0
 while running or not win:
     # Handle events
     handleEvents()
-
-    # Current Player
-    current_player = game.player_list[game.current_player_index]
-
-    # Display welcoming text and button
-    if move == 0:
-        #display_text("Hello, Player!", 3)
-        #display_persistent_text("Hand:", 140, window_size[1] - 75, 72)
-        updateHand(len(game.player_list[0].hand))
-        move += 1
-
-    if playerTurn == 0:
-        myturn = True
-    else:
-        myturn = False
+    updateHand(len(game.player_list[0].hand))
     
     # Check if turn
     if myturn:
         clearPlaySpace()
-        # Check if all cards are valid and force draw
-        needToDraw = True
-        for card in game.user.hand:
-            if game.is_valid(card):
-                needToDraw = False
-                break
-        if needToDraw:
-            # Force Draw MAKE SURE TO STILL BE ABLE TO PLAY DRAWN CARD
-            playerTurn += 1
-            print("FORCED DRAWN!")
+        updateHand(len(game.player_list[0].hand))
 
         if playerTurn == 0 and display_button("Play card", 150, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
-            display_text("Card played!", 1.5)
             clearPlaySpace()
             # Do play card stuff
-            # input - p
-            choice = 'p'
-
             display_persistent_text("Choose your card", 150, window_size[1] - 195, 50)
-            # Wait until click to get cardChosen
-            play_index = -1
-
-            print(str(game._deck.discard_pile[len(game._deck.discard_pile)-1]))
-            while play_index < 0 or play_index > len(game.user.hand) or not game.is_valid(game.user.hand[play_index]):
-                #play_index = int(input('Which card would you like to play?: '))
-                play_index = chooseCard()
-                if play_index < 0 or play_index > len(game.user.hand):
-                    #print('Invalid choice. Try Again.')
-                    trash = 0
-                    # Rechoose cardChosen
-                    #cardChosen = chooseCard()
-                elif not game.is_valid(game.user.hand[play_index]):
-                    #print('You cannot play that card. Try Again.')
-                    trash = 0
-                    # Rechoose cardChosen
-                    #cardChosen = chooseCard()
-            print(len(game.user.hand))
-            print(play_index)
-            print(str(game._deck.discard_pile[len(game._deck.discard_pile)-1]))
-            print(game.player_list[0].hand)
             clearPlaySpace()
-            win = game.user_turn(choice, play_index)
-            updateHand(len(game.player_list[0].hand)) # change to player_list.hand
-            
-            playerTurn += 1
-            if playerTurn == 4:
-                playerTurn = 0
+            updateHand(len(game.player_list[0].hand))
         
         if playerTurn == 0 and display_button("Draw card", 250, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
-            display_text("Card drawn!", 1.5)
             clearPlaySpace()
             # Do draw card stuff
-            # input - d
-            choice = 'd'
-
-
+            clearPlaySpace()
             updateHand(len(game.player_list[0].hand))
-            playerTurn += 1
-            if playerTurn == 5:
-                playerTurn = 0
-        
     else:
         clearPlaySpace()
         text = "Doing Player " + str(playerTurn) + "'s turn"
@@ -289,9 +226,6 @@ while running or not win:
     if not myturn:
         time.sleep(.5)
         # Do bot's turn
-        playerTurn += 1
-        if playerTurn == 5:
-            playerTurn = 0
 
     # Update screen
     pygame.display.flip()
