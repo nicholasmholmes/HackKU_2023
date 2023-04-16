@@ -126,6 +126,8 @@ By utilizing `blit()` along with coordinates and images we're able to manipulate
   
  ![alt text](https://github.com/nicholasmholmes/HackKU_2023/display.png?raw=true)
   
+  ![What is this](display.png)
+  
  # 💖 *Thank you!* 💖
  Though we only previewed a few parts of our project, it took these small portions in tandem with many other lines of code to finally have a working product, and we're very thankful for the chance to present our work.
  Through a lot of effort, and *a lot* of energy drinks... we were able to create our game. We hope it might seem as enjoyable to others as it was for us.
