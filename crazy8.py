@@ -57,6 +57,7 @@ class Crazy:
             print(str(x) + ': ' + str(card))
             x+=1
         print('\nTop card: ' + str(self._deck.discard_pile[-1]))
+        print('\n' + str(len(self.player_list[0].hand)))
         #card_index = self.choose_card_index(self) # Replace with input from game
         card_index = -1
         
