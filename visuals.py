@@ -30,7 +30,7 @@ card_image_list = dict()
 for i in range(4):
         for j in range(13):
             filename = f'{numbers_list[j]}_of_{suit_list[i]}.png'  # Replace with your image file name
-            image = pygame.image.load(filename)
+            image = pygame.image.load("cards/" + filename)
             card_image_list[f'{key_numbers_list[j]} of {suit_list[i]}'] = image
         
 draw_pile_img = pygame.image.load('back_of_card.png')
