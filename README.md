@@ -1,4 +1,4 @@
-# HackKU_2023
+# HackKU_2023 🌐
 Hack KU event, team project made by Nicholas Holmes, Alex Doehring, Colin Treanor, and Raymann Singh.
 We are all freshmen Engineering Students -- *three Computer Science students, One Aerospace* -- at Kansas University.
 
@@ -75,7 +75,7 @@ pygame.quit()
   It also implmements a basic running loop that most games would utilize -- *including ours* -- in order to run the game 
   until the win condition(or something similar) is met.
   
-  ## 🌐 How do we make a *multiplayer* game work using python? 🌐
+  ## 🔗 How do we make a *multiplayer* game work using python? 🔗
   
   First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to connect to other players on a server, but simply a game that requires multiple people or *players* in order to properly function.
   
