@@ -50,7 +50,7 @@ class Crazy:
         self._deck.discard_pile.append(first_card)
         print('Hands are dealt!')
 
-    def user_turn(self, choice, cardChosen, play_index):
+    def user_turn(self, choice, play_index):
         print('\nYour Hand: ')
         x = 1
         for card in self.user.hand:
@@ -60,12 +60,12 @@ class Crazy:
         #card_index = self.choose_card_index(self) # Replace with input from game
         card_index = -1
         
-        if choice.lower() == 'p':
+        if choice == 'p':
             #card_index = self.choose_play_index(self)
             card_index = play_index #something
             
 
-        elif choice.lower() == 'd':
+        elif choice == 'd':
             card_index = -1
 
 
