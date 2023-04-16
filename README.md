@@ -82,7 +82,7 @@ pygame.quit()
   
   With this basic understanding, we can get into the process of our game creation!
   
-  We first began by creating a simple player class that could operate the functions a computer player might need, which looked something like this:
+  We first began by creating a simple player class that operates the necessary functions a computer player might need, which looked something like this:
    
   ```bash
   class Player:
@@ -95,17 +95,21 @@ pygame.quit()
         return value
 ```
  
-It ended up being much simpler than we had initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class. Along with simple `__str__` and `__repr__` methods.
+It ended up being much simpler than we initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class. Along with simple `__str__` and `__repr__` methods.
 
-This was one of many components necessary to properly run our game. We also relied on a `deck`, `card`, `crazy8` -- *main code that operates the game* -- and `visuals`
+This was one of many components necessary to properly run our game. We also relied on other classes:
+    - `deck`
+    - `card`
+    - `crazy8` (*main code that operates the game*)
+    - `visuals`
 
 ## Speaking of visuals... 🔍
 
-After finishing the skeleton for the game and making sure it runs properly we had to tackle our next hurdle: visual implementation of cards and a display that players can properly navigate and interact with.
+After finishing the skeleton for the game and confirming it runs properly we had to tackle our next hurdle: visual implementation of cards and a display that players can properly navigate and interact with.
 
 This was definitely one of the more entertaining parts of the project, as we progressively watched our game develop in front of us on a screen. 
   
-### One of the Main Functions
+## Functions for Design 🚀
   The `blit()` function is a Pygame method that is used to copy a surface onto another surface. It is short for "block transfer", and is used to transfer the pixel data from one surface to another.
 
 Here is the general syntax for the `blit()` function:
