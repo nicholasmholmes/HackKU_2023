@@ -209,6 +209,18 @@ while running or not win:
     # Check if turn
     if myturn:
         clearPlaySpace()
+        # Check if all cards are valid and force draw
+        print(game.user.hand)
+        for card in game.user.hand:
+            if game.is_valid(card):
+                #valid
+                tr = 3
+            else:
+                #instant draw 
+                playerTurn += 1
+                print("FORCED DRAWN!!!!!")
+                break
+
         if playerTurn == 0 and display_button("Play card", 150, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
             display_text("Card played!", 1.5)
             clearPlaySpace()
