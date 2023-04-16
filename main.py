@@ -1,4 +1,4 @@
-from crazy8 import Crazy
+from crazy8CRAZY import Crazy
 
 
 def main():
