@@ -109,7 +109,7 @@ After finishing the skeleton for the game and confirming it runs properly we had
 
 This was definitely one of the more entertaining parts of the project, as we progressively watched our game develop in front of us on a screen. 
   
-## Functions for Design 🚀
+### Functions for Design 🚀
   The `blit()` function is a Pygame method that is used to copy a surface onto another surface. It is short for "block transfer", and is used to transfer the pixel data from one surface to another.
 
 Here is the general syntax for the `blit()` function:
