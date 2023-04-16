@@ -22,6 +22,33 @@ for i in range(4):
             filename = f'{numbers_list[j]}_of_{suit_list[i]}.png'  # Replace with your image file name
             image = pygame.image.load(filename)
             card_image_list[f'{key_numbers_list[j]} of {suit_list[i]}'] = image
+        
+draw_pile_img = pygame.image.load('back_of_card.png')
+draw_pile_img = pygame.transform.scale(draw_pile_img, (106, 146))
+window.blit(draw_pile_img, (sw/2-106, sh/2-73))
+
+discard_pile_img = image_list[str(game._deck.discard_pile[len(game._deck.discard_pile)-1]).lower()]
+discard_pile_img = pygame.transform.scale(discard_pile_img, (100, 140))
+
+window.blit(draw_pile_img, (sw/2-30, 0))
+window.blit(draw_pile_img, (sw/2-50, 0))
+window.blit(draw_pile_img, (sw/2-70, 0))
+window.blit(draw_pile_img, (sw/2-90, 0))
+
+draw_pile_img = pygame.transform.rotate(draw_pile_img, 90)
+window.blit(draw_pile_img, (0, sh/2-30))
+window.blit(draw_pile_img, (0, sh/2-50))
+window.blit(draw_pile_img, (0, sh/2-70))
+window.blit(draw_pile_img, (0, sh/2-90))
+
+window.blit(draw_pile_img, (sw-140, sh/2-90))
+window.blit(draw_pile_img, (sw-140, sh/2-70))
+window.blit(draw_pile_img, (sw-140, sh/2-50))
+window.blit(draw_pile_img, (sw-140, sh/2-30))
+
+window.blit(discard_pile_img, (sw/2, sh/2-70))
+
+pygame.display.update()
 
 # Example of how to print cards
 '''
