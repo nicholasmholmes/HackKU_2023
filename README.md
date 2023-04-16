@@ -14,6 +14,6 @@ For this event we are trying to make a user playable version of the Crazy Eights
 
   2. Pygame is built on top of the SDL (Simple DirectMedia Layer) library, which provides low-level access to computer hardware, such as graphics cards and sound cards. This means that Pygame can be used to create high-performance applications that utilize hardware acceleration for smooth graphics and fast sound processing.
 
-  3. With Pygame, developers can easily create graphical user interfaces, animations, and games using Python code. Pygame provides a number of useful features, such as sprites, collision detection, event handling, and sound effects, which make it easy to create complex games and applications.
+  3. Pygame provides a number of useful features, such as sprites, collision detection, event handling, and sound effects, which make it easy to create complex games and applications.
 
-  4. Pygame also supports a wide range of file formats for images, sounds, and fonts, making it easy to import and use existing assets in your game or application. Additionally, Pygame provides support for various input devices, such as keyboards, mice, and joysticks, which makes it easy to create interactive applications that respond to user input.
+  4. It also supports a wide range of file formats for images, sounds, and fonts, making it easy to import and use existing assets in your game or application. Additionally, Pygame provides support for various input devices, such as keyboards, mice, and joysticks, which makes it easy to create interactive applications that respond to user input.
