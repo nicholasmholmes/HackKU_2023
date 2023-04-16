@@ -1,6 +1,6 @@
 import pygame
 import time, math
-from crazy8 import Crazy
+from crazy8CRAZY import Crazy
 
 # Initialize Pygame
 pygame.init()
@@ -258,10 +258,10 @@ while running or not win:
             print(len(game.user.hand))
             print(play_index)
             print(str(game._deck.discard_pile[len(game._deck.discard_pile)-1]))
-            updateHand(len(game.player_list[0].hand)) # change to player_list.hand
             print(game.player_list[0].hand)
             clearPlaySpace()
             win = game.user_turn(choice, play_index)
+            updateHand(len(game.player_list[0].hand)) # change to player_list.hand
             
             playerTurn += 1
             if playerTurn == 4:
@@ -273,6 +273,7 @@ while running or not win:
             # Do draw card stuff
             # input - d
             choice = 'd'
+
 
             updateHand(len(game.player_list[0].hand))
             playerTurn += 1
