@@ -122,7 +122,7 @@ while running:
     # Check if turn
     if myturn:
         clearPlaySpace()
-        if display_button("Play card", 150, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
+        if playerTurn == 1 and display_button("Play card", 150, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
             display_text("Card played!", 1.5)
             clearPlaySpace()
             # Do play card stuff
@@ -131,7 +131,7 @@ while running:
             if playerTurn == 5:
                 playerTurn = 1
         
-        if display_button("Draw card", 250, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
+        if playerTurn == 1 and display_button("Draw card", 250, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
             display_text("Card drawn!", 1.5)
             clearPlaySpace()
             # Do draw card stuff
@@ -147,8 +147,9 @@ while running:
     
     # If not my turn do next player turn
     if not myturn:
-        playerTurn += 1
         time.sleep(.5)
+        # Do bot's turn
+        playerTurn += 1
         if playerTurn == 5:
             playerTurn = 1
 
