@@ -94,4 +94,4 @@ pygame.quit()
         return value
 ```
  
-It ended up being much simpler than we had initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class.
+It ended up being much simpler than we had initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class. Along with simple `__str__` and `__repr__` methods.
