@@ -92,6 +92,6 @@ pygame.quit()
         value = self.hand[index]
         self.hand.remove(index)
         return value
-  ```
-  
+```
+ 
 It ended up being much simpler than we had initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class.
