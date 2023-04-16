@@ -124,6 +124,7 @@ Here is the general syntax for the `blit()` function:
 
 By utilizing `blit()` along with coordinates and images we're able to manipulate the display to fit our game's needs and show the player their own hand as well as the discard pile and the card they need to play on. Fun!!
   
+ ![alt text](https://github.com/nicholasmholmes/HackKU_2023/display.png?raw=true)
   
  # 💖 *Thank you!* 💖
  Though we only previewed a few parts of our project, it took these small portions in tandem with many other lines of code to finally have a working product, and we're very thankful for the chance to present our work.
