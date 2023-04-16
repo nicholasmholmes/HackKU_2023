@@ -29,7 +29,7 @@ counter_width = 0
 counter_length = 0
 for card in game.player_list[0].hand:
     card = pygame.transform.scale(card_image_list[str(card).lower()], (100, 140))
-    scrn.blit(card, (counter_width, counter_length))
+    window.blit(card, (counter_width, counter_length))
     pygame.display.update()
     counter_width += 100
     if counter_width == 900:
