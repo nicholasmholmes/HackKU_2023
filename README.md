@@ -18,7 +18,7 @@ For this event we are trying to make a user playable version of the Crazy Eights
 
   4. It also supports a wide range of file formats for images, sounds, and fonts, making it easy to import and use existing assets in your game or application. Additionally, Pygame provides support for various input devices, such as keyboards, mice, and joysticks, which makes it easy to create interactive applications that respond to user input.
 
-  # Implementation:
+  #### Implementation:
   This extension can be easily implemented like most other functions in python by beginning the file with:
   
   ```bash
