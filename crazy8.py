@@ -73,7 +73,7 @@ class CrazyNew:
         self._deck.discard_pile.append(first_card)
         print('Hands are dealt!')
 
-    def check_win(current_player):
+    def check_win(self, current_player):
         if len(current_player.hand) < 1:
             return True
         return False
@@ -102,7 +102,7 @@ class CrazyNew:
                     x+=1                    
                 print('\nTop card: ' + str(self._deck.discard_pile[len(self._deck.discard_pile)-1]))
 
-                #Checking for valid card
+                #Checking for valid card ## ISSUE TURN INTO FUNCTION OR INPUT
                 card_index = self.valid_deck(current_player)
                 if card_index >= 0:
                     choice = input('What would you like to do? (Type p for play or d for draw): ')
@@ -123,9 +123,3 @@ class CrazyNew:
             
             win = self.check_win(current_player)
             self.next_turn()
-
-
-
-
-
-
