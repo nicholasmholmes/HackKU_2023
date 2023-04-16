@@ -77,7 +77,7 @@ pygame.quit()
   
   ### How do we make a "multiplayer" game work using python?
   
-  First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to conect to other players on a server, but simply a game that requires multiple people or "players" in order to properly function.
+  First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to connect to other players on a server, but simply a game that requires multiple people or "players" in order to properly function.
   
   With this basic undertsanding, we can get into the process of our game creation!
   
@@ -95,3 +95,11 @@ pygame.quit()
 ```
  
 It ended up being much simpler than we had initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class. Along with simple `__str__` and `__repr__` methods.
+
+This was one of many components necessary to properly run our game. We also relied on a `deck`, `card`, `crazy8` -- *main code that operates the game* -- and `visuals`
+
+## Speaking of visuals...
+
+After finishing the skeleton for the game and making sure it runs properly we had to tackle our next hurdle: visual implementation of cards and a display that players can properly navigate and interact with.
+
+This was definitely one of the more entertaining parts of the project, as we progressively watched our game develop in front of us on a screen. 
