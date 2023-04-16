@@ -71,9 +71,10 @@ while running:
 pygame.quit()
 
 ```
-  This code creates a base display template by setting the height and width parameters using the x and y axis. 
+  This code creates a base display template by setting the height and width of the window, along with functions like `display`, `fill`, and `draw`. 
+    - One key function is `display.update()`. This function is necessary in order to constantly update the user's screen when any change is made.
   It also implmements a basic running loop that most games would utilize -- *including ours* -- in order to run the game 
-  until the win condition(or something similar) is met.
+  until a win condition(or something similar) is met.
   
   ## 🔗 How do we make a *multiplayer* game work using python? 🔗
   
