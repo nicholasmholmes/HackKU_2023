@@ -103,3 +103,12 @@ This was one of many components necessary to properly run our game. We also reli
 After finishing the skeleton for the game and making sure it runs properly we had to tackle our next hurdle: visual implementation of cards and a display that players can properly navigate and interact with.
 
 This was definitely one of the more entertaining parts of the project, as we progressively watched our game develop in front of us on a screen. 
+  
+### One of the Main Functions
+  The `blit()` function is a Pygame method that is used to copy a surface onto another surface. It is short for "block transfer", and is used to transfer the pixel data from one surface to another.
+
+Here is the general syntax for the `blit()` function:
+    ``` bash
+  target_surface.blit(source_surface, target_position)
+```
+  
