@@ -3,7 +3,7 @@ from player import Player
 import random
 
 
-class Crazy:
+class CrazyNew:
     def __init__(self, players=4):
         self._deck = Deck()
         self.current_player_index = 0
@@ -13,20 +13,31 @@ class Crazy:
         self.user = Player()
         self.player_list.insert(0, self.user)
 
+    #Checks if a card is valid to play
     def is_valid(self, card):
         if self._deck.discard_pile[len(self._deck.discard_pile) - 1].getSuit() == card.getSuit() or \
                 self._deck.discard_pile[len(self._deck.discard_pile) - 1].getRank() == card.getRank():
             return True
         return False
 
+    #Checks if there is a valid card in a player's deck and returns the index; returns -1 otherwise
+    def valid_deck(self, player):
+        for card in player.hand:
+            if self.is_valid(card):
+                return player.hand.index(card)
+        return -1
+
+    #Draws a card from the deck into the players hand, if they can play it, they do
     def draw_card(self, current_player):
         new_card = self._deck.draw()
         print('Player ' + str(self.current_player_index) + ' drew a ' + str(new_card))
-        current_player.hand.append(new_card)
         if self.is_valid(new_card):
             self._deck.discard_pile.append(new_card)
             print('Player ' + str(self.current_player_index) + ' played a ' + str(new_card))
+        else:
+            current_player.hand.append(new_card)
 
+    #CPU plays a card
     def play_card(self, current_player, index):
         played_card = current_player.play_card(index)
         if self.is_valid(played_card):
@@ -36,12 +47,24 @@ class Crazy:
             current_player.hand.append(played_card)
             self.draw_card(current_player)
 
+    #User plays a card
+    def user_play_card(self, user):
+        play_index = int(input('Which card would you like to play?: '))
+        while play_index < 1 or play_index > len(self.user.hand) or not self.is_valid(self.user.hand[play_index-1]):
+            play_index = int(input('Invalid choice. Try Again: '))
+        print('You played the ' + str(self.user.hand[play_index-1]))
+        played_card = self.user.hand[play_index-1]
+        self.user.hand.remove(played_card)
+        self._deck.discard_pile.append(played_card)
+
+    #sets the current player index to the next player
     def next_turn(self):
         if self.current_player_index == len(self.player_list) - 1:
             self.current_player_index = 0
         else:
             self.current_player_index += 1
-
+            
+    #Starts the game and deals the cards
     def setup(self):
         random.shuffle(self._deck.cards)
         for player in self.player_list:
@@ -50,72 +73,56 @@ class Crazy:
         self._deck.discard_pile.append(first_card)
         print('Hands are dealt!')
 
+    def check_win(current_player):
+        if len(current_player.hand) < 1:
+            return True
+        return False
+
     def start(self):
         self.setup()
         win = False
         while not win:
             current_player = self.player_list[self.current_player_index]
-            card_index = 0
-            valid_play = False
+            
+            #CPU turn
             if self.current_player_index != 0:
-                for card in current_player.hand:
-                    if self.is_valid(card):
-                        self.play_card(current_player, card_index)
-                        valid_play = True
-                        break
-                    else:
-                        card_index += 1
-                        
-                if not valid_play:
+                card_index = self.valid_deck(current_player)
+                if card_index >= 0:
+                    self.play_card(current_player, card_index)
+                else:
                     self.draw_card(current_player)
+
+            #Player turn
             else:
+                #Printing your hand and top card
                 print('\nYour Hand: ')
                 x = 1
                 for card in self.user.hand:
                     print(str(x) + ': ' + str(card))
-                    x+=1
-                    
+                    x+=1                    
                 print('\nTop card: ' + str(self._deck.discard_pile[len(self._deck.discard_pile)-1]))
 
-                card_index = 0
-                for card in self.user.hand:
-                    if self.is_valid(card):
-                        break
-                    else:
-                        card_index += 1
-                
-                if card_index != len(self.user.hand):        
+                #Checking for valid card
+                card_index = self.valid_deck(current_player)
+                if card_index >= 0:
                     choice = input('What would you like to do? (Type p for play or d for draw): ')
                     while choice.lower() != 'd' and choice.lower() != 'p':
                         choice = input('Invalid Choice. Try Again: ')
                 else:
-                    print("Oops! Looks like you can't play! You will now draw.")
-                    choice = 'd'       
-                    
+                    choice == 'd'
+                    print("Oops! Looks like you can't play! You will now draw.")      
+
+                 
                 if choice.lower() == 'd':
-                    new_card = self._deck.draw()
-                    print('You drew a ' + str(new_card))
-                    if self.is_valid(new_card):
-                        self._deck.discard_pile.append(new_card)
-                        print('You played the ' + str(new_card))
-                    else:
-                        self.user.hand.append(new_card)
+                    self.draw_card(current_player)
 
                 elif choice.lower() == 'p':
-                    play_index = int(input('Which card would you like to play?: '))
-                    while play_index < 1 or play_index > len(self.user.hand) or not self.is_valid(self.user.hand[play_index-1]):
-                        play_index = int(input('Invalid choice. Try Again: '))
-                    print('You played the ' + str(self.user.hand[play_index-1]))
-                    played_card = self.user.hand[play_index-1]
-                    self.user.hand.remove(played_card)
-                    self._deck.discard_pile.append(played_card)
+                    self.user_play_card(current_player)
+                    
                 print()
             
-            if len(current_player.hand) < 1:
-                win = True
-                print(f'Player {self.current_player_index} wins!')
-            else:
-                self.next_turn()
+            win = self.check_win(current_player)
+            self.next_turn()
 
 
 
