@@ -114,5 +114,5 @@ Here is the general syntax for the `blit()` function:
 ```
   
   - Here, `target_surface` is the surface onto which you want to draw, `source_surface` is the surface that you want to copy, and `target_position` is the position on the target surface where you want to draw the source surface.
-  The `blit()` function takes the pixel data from the source surface and copies it onto the target surface at the specified position. You can use the `blit()` function in a variety of ways to create complex graphics and animations in your Pygame game. For example, you can use it to draw images, sprites, text, and other shapes onto your game screen. It is a versatile and powerful tool that is essential for creating dynamic and interactive Pygame games.
+  - The `blit()` function takes the pixel data from the source surface and copies it onto the target surface at the specified position. You can use the `blit()` function in a variety of ways to create complex graphics and animations in your Pygame game. For example, you can use it to draw images, sprites, text, and other shapes onto your game screen. It is a versatile and powerful tool that is essential for creating dynamic and interactive Pygame games.
   
