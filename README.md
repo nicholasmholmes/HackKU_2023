@@ -122,11 +122,9 @@ Here is the general syntax for the `blit()` function:
   - The `blit()` function takes the pixel data from the source surface and copies it onto the target surface at the specified position. You can use the `blit()` function in a variety of ways to create complex graphics and animations in your Pygame game. For example, you can use it to draw images, sprites, text, and other shapes onto your game screen. It is a versatile and powerful tool that is essential for creating dynamic and interactive Pygame games.
   
 
-By utilizing `blit()` along with coordinates and images we're able to manipulate the display to fit our game's needs and show the player their own hand as well as the discard pile and the card they need to play on. Fun!!
+By utilizing `blit()` along with coordinates and images we're able to manipulate the display to fit our game's needs and show the player their own hand as well as the discard pile and the card they need to play on. Fun!! Here you can see our game display:
   
- ![alt text](https://github.com/nicholasmholmes/HackKU_2023/display.png?raw=true)
-  
-  ![What is this](display.png)
+  ![game interface](display.png)
   
  # 💖 *Thank you!* 💖
  Though we only previewed a few parts of our project, it took these small portions in tandem with many other lines of code to finally have a working product, and we're very thankful for the chance to present our work.
