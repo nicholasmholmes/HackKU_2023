@@ -64,8 +64,9 @@ class Crazy:
         if choice == 'p':
             #card_index = self.choose_play_index(self)
             card_index = play_index #something
-            
-
+            played_card = self.user.hand[play_index]
+            self.user.hand.remove(played_card)
+            self._deck.discard_pile.append(played_card)
         elif choice == 'd':
             card_index = -1
 
