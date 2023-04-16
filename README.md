@@ -5,7 +5,7 @@ We are all freshmen Engineering Students -- *three Computer Science students, On
 For this event we are trying to make a user playable version of the Crazy Eights card game using the pygame extension.
 
 ### <align center> *_How to play:_* ###
-  Crazy Eights is a card game where the goal is to be the first player to get rid of all the cards in his hand. The game can be played with a standard playing card deck for 4 players, with 7 cards dealt to each player. The remaining cards go in a stack face down in the middle. Turn the top card over. The player to the left of the dealer starts the game by placing a matching card on the discard pile. The game continues clockwise, and each player must play a card that matches the current card in either suit or rank. If no card is matching, draw one card from the draw pile. The player who is the first to have no cards left wins the game. 
+  Crazy Eights is a card game where the goal is to be the first player to get rid of all the cards in their hand. The game can be played with a standard playing card deck for 4 players, with 7 cards dealt to each player. The remaining cards go in a stack face down in the middle. Turn the top card over. The player to the left of the dealer starts the game by placing a matching card on the discard pile. The game continues clockwise, and each player must play a card that matches the current card in either suit or rank. If no card is matching, draw one card from the draw pile. The player who is the first to have no cards left wins the game. 
 
   ## 🔧 _Pygame_ 🔧
   This program requires the usage of a python extension called  `pygame` 
