@@ -75,4 +75,23 @@ pygame.quit()
   It also implmements a basic running loop that most games would utilize -- *including ours* -- in order to run the game 
   until the win condition(or something similar) is met.
   
-  ### How do we make a multiplayer game work using python?
+  ### How do we make a "multiplayer" game work using python?
+  
+  First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to conect to other players on a server, but simply a game that requires multiple people or "players" in order to properly function.
+  
+  With this basic undertsanding, we can get into the process of our game creation!
+  
+  We first began by creating a simple player class that could operate the functions a computer player might need, which looked something like this:
+  
+    ```bash
+  class Player:
+    def __init__(self):
+        self.hand = []
+
+    def play_card(self, index):
+        value = self.hand[index]
+        self.hand.remove(index)
+        return value
+  ```
+  
+It ended up being much simpler than we had initially thought, as our "players" only needed a function allowing them to play a card, which the valid parameters for are described in our actual game class.
