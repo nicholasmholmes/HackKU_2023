@@ -71,4 +71,6 @@ while running:
 pygame.quit()
 
 ```
-  
+  This code creates a base display template by setting the height and width parameters using the x and y axis. 
+  It also implmements a basic running loop that most games would utilize -- *including ours* -- in order to run the game 
+  until the win condition(or something similar) is met.
