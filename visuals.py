@@ -9,6 +9,7 @@ pygame.init()
 game = Crazy()
 game.setup()
 print(game.player_list[0].hand)
+win = False
 
 # Set window size
 screen_info = pygame.display.Info()
@@ -80,7 +81,7 @@ def display_persistent_text(text, x, y, fsize):
     window.blit(text_surface, text_rect)
 
 def updateHand(handSize):
-    colorTemp = (0,255,0)
+    colorTemp = (255,255,255)
     
     for i in range(handSize):
         size = (100,140)
@@ -108,10 +109,13 @@ def clearPlaySpace():
 # Main game loop
 running = True
 move = 0
-playerTurn = 1
-while running:
+playerTurn = 0
+while running or not win:
     # Handle events
     handleEvents()
+
+    # Current Player
+    current_player = game.player_list[game.current_player_index]
 
     # Display welcoming text and button
     if move == 0:
@@ -120,7 +124,7 @@ while running:
         updateHand(7)
         move += 1
 
-    if playerTurn == 1:
+    if playerTurn == 0:
         myturn = True
     else:
         myturn = False
@@ -132,19 +136,40 @@ while running:
             display_text("Card played!", 1.5)
             clearPlaySpace()
             # Do play card stuff
+            # input - p
+            choice = 'p'
+
+            display_persistent_text("Choose your card", 150, window_size[1] - 195, 50)
+            # Wait until click to get cardChosen
+            play_index = -1
+
+            while play_index < 1 or play_index > len(game.user.hand) or not game.is_valid(self.user.hand[play_index-1]):
+                #play_index = int(input('Which card would you like to play?: '))
+                play_index = cardChosen
+                if play_index < 1 or play_index > len(game.user.hand):
+                    print('Invalid choice. Try Again.')
+                    # Rechoose cardChosen
+                elif not game.is_valid(game.user.hand[play_index-1]):
+                    print('You cannot play that card. Try Again.')
+                    # Rechoose cardChosen
+
+            # clearPlaySpace()
+            win = game.user_turn(game, choice, cardChosen, play_index)
             updateHand(7)
             playerTurn += 1
-            if playerTurn == 5:
-                playerTurn = 1
+            if playerTurn == 4:
+                playerTurn = 0
         
         if playerTurn == 1 and display_button("Draw card", 250, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
             display_text("Card drawn!", 1.5)
             clearPlaySpace()
             # Do draw card stuff
+            # input - d
+            choice = 'd'
             updateHand(7)
             playerTurn += 1
             if playerTurn == 5:
-                playerTurn = 1
+                playerTurn = 0
         
     else:
         clearPlaySpace()
@@ -157,7 +182,7 @@ while running:
         # Do bot's turn
         playerTurn += 1
         if playerTurn == 5:
-            playerTurn = 1
+            playerTurn = 0
 
     # Update screen
     pygame.display.flip()
