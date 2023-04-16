@@ -21,6 +21,10 @@ window_size = (int(sw - sw/4), int(sh - sh/4))
 window = pygame.display.set_mode((window_size[0], window_size[1]))
 pygame.display.set_caption("crazy8")
 
+# Fill background color
+background_color= (0,0,0)
+window.fill(background_color)
+
 # Loading card images
 suit_list = ['spades', 'hearts', 'clubs', 'diamonds']
 numbers_list = ['2','3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace']
@@ -75,9 +79,7 @@ for card in game.player_list[0].hand:
 print(game.player_list[0].hand)
 '''
 
-# Fill background color
-background_color= (0,0,0)
-window.fill(background_color)
+
 
 # Set font and font size
 font_size = 72
@@ -138,12 +140,20 @@ def updateHand(handSize):
     colorTemp = (255,255,255)
     background_rect = pygame.Rect(0, window_size[1] - 170, window_size[0], window_size[1])
     pygame.draw.rect(window, (0,0,0), background_rect)
+    discard_pile_img = card_image_list[str(game._deck.discard_pile[len(game._deck.discard_pile)-1]).lower()]
+    discard_pile_img = pygame.transform.scale(discard_pile_img, (100, 140))
+    pygame.display.update()
     
     for i in range(handSize):
         size = (100,140)
         pos = (150 + ((25 + size[0]) * i), window_size[1] - (140+25))
-        attr = pygame.Rect(pos, size)
-        pygame.draw.rect(window, colorTemp, attr)
+        counter_width = 0
+        counter_length = 0
+        card = pygame.transform.scale(card_image_list[str(game.user.hand[i]).lower()], size)
+        window.blit(card, pos)
+        pygame.display.update()
+        # attr = pygame.Rect(pos, size)
+        # pygame.draw.rect(window, colorTemp, attr)
     pygame.display.flip()
 
 def chooseCard():
@@ -210,16 +220,15 @@ while running or not win:
     if myturn:
         clearPlaySpace()
         # Check if all cards are valid and force draw
-        print(game.user.hand)
+        needToDraw = True
         for card in game.user.hand:
             if game.is_valid(card):
-                #valid
-                tr = 3
-            else:
-                #instant draw 
-                playerTurn += 1
-                print("FORCED DRAWN!!!!!")
+                needToDraw = False
                 break
+        if needToDraw:
+            # Force Draw MAKE SURE TO STILL BE ABLE TO PLAY DRAWN CARD
+            playerTurn += 1
+            print("FORCED DRAWN!")
 
         if playerTurn == 0 and display_button("Play card", 150, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
             display_text("Card played!", 1.5)
@@ -250,6 +259,7 @@ while running or not win:
             print(play_index)
             print(str(game._deck.discard_pile[len(game._deck.discard_pile)-1]))
             updateHand(len(game.player_list[0].hand)) # change to player_list.hand
+            print(game.player_list[0].hand)
             clearPlaySpace()
             win = game.user_turn(choice, play_index)
             
@@ -263,6 +273,7 @@ while running or not win:
             # Do draw card stuff
             # input - d
             choice = 'd'
+
             updateHand(len(game.player_list[0].hand))
             playerTurn += 1
             if playerTurn == 5:
