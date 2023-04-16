@@ -24,3 +24,51 @@ For this event we are trying to make a user playable version of the Crazy Eights
   ```bash
 import pygame
 ```
+  #### Example:
+   ```bash
+  import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# Set the dimensions of the window
+win_width = 640
+win_height = 480
+
+# Create the window
+win = pygame.display.set_mode((win_width, win_height))
+
+# Set the title of the window
+pygame.display.set_caption("My Pygame Window")
+
+# Set the color of the rectangle
+rect_color = (255, 0, 0)  # Red
+
+# Set the dimensions and position of the rectangle
+rect_x = 100
+rect_y = 100
+rect_width = 50
+rect_height = 50
+
+# Game loop
+running = True
+while running:
+    # Handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Clear the screen
+    win.fill((255, 255, 255))  # White
+
+    # Draw the rectangle
+    pygame.draw.rect(win, rect_color, (rect_x, rect_y, rect_width, rect_height))
+
+    # Update the screen
+    pygame.display.update()
+
+# Clean up Pygame
+pygame.quit()
+
+```
+  
