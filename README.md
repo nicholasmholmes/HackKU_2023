@@ -75,9 +75,9 @@ pygame.quit()
   It also implmements a basic running loop that most games would utilize -- *including ours* -- in order to run the game 
   until the win condition(or something similar) is met.
   
-  ### 🌐 How do we make a "multiplayer" game work using python? 🌐
+  ## 🌐 How do we make a *multiplayer* game work using python? 🌐
   
-  First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to connect to other players on a server, but simply a game that requires multiple people or "players" in order to properly function.
+  First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to connect to other players on a server, but simply a game that requires multiple people or *players* in order to properly function.
   
   With this basic undertsanding, we can get into the process of our game creation!
   
@@ -119,8 +119,9 @@ Here is the general syntax for the `blit()` function:
 
 By utilizing `blit()` along with coordinates and images we're able to manipulate the display to fit our game's needs and show the player their own hand as well as the discard pile and the card they need to play on. Fun!!
   
+  
  # 💖 *Thank you!* 💖
- 
+ Though we only previewed a few parts of our project, it took these small portions in tandem with many other lines of code to finally have a working product, and we're very thankful for the chance to present our work.
  Through a lot of effort, and *a lot* of energy drinks... we were able to create our game. We hope it might seem as enjoyable to others as it was for us.
   This has been an amazing event, both as a fun way to connect with others and an incredible learning experience. Our entire team would like to thank all of the organizers & sponsors for the work they did to make HackKU 2023 happen.
   
