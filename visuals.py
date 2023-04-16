@@ -8,10 +8,10 @@ pygame.init()
 screen_info = pygame.display.Info()
 sw = screen_info.current_w
 sh = screen_info.current_h
-window_size = (int(sw - sw/2), int(sh - sh/2))
+window_size = (int(sw - sw/4), int(sh - sh/4))
 
 # Create window
-window = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+window = pygame.display.set_mode((window_size[0], window_size[1]))
 pygame.display.set_caption("crazy8")
 
 # Fill background color
@@ -40,7 +40,6 @@ def display_text(text, seconds, x=None, y=None):
     window.blit(text_surface, text_rect)
     pygame.display.flip()
     time.sleep(seconds)
-    #window.fill((0,0,0))
     # Fill the background color only around the text
     background_rect = pygame.Rect(text_rect.left, text_rect.top, text_rect.width, text_rect.height)
     pygame.draw.rect(window, background_color, background_rect)
@@ -67,8 +66,9 @@ def display_button(text, x, y, w, h, inactive_color, active_color):
     text_rect.center = (x + w // 2, y + h // 2)
     window.blit(text_surface, text_rect)
 
-def display_persistent_text(text, x, y):
-    text_surface = font.render(text, True, (255, 255, 255))
+def display_persistent_text(text, x, y, fsize):
+    fontP = pygame.font.Font(None, fsize)
+    text_surface = fontP.render(text, True, (255, 255, 255))
     text_rect = text_surface.get_rect()
     text_rect.bottomleft = (x, y)
     window.blit(text_surface, text_rect)
@@ -78,7 +78,7 @@ def updateHand(handSize):
     
     for i in range(handSize):
         size = (100,140)
-        pos = (300 + ((50 + size[0]) * i), window_size[1] - 150)
+        pos = (300 + ((25 + size[0]) * i), window_size[1] - (140+25))
         attr = pygame.Rect(pos, size)
         pygame.draw.rect(window, colorTemp, attr)
     pygame.display.flip()
@@ -95,9 +95,14 @@ def handleEvents():
         pygame.quit()
         return running
 
+def clearPlaySpace():
+    background_rect = pygame.Rect(150, window_size[1] - 240, 500, 50)
+    pygame.draw.rect(window, background_color, background_rect)
+
 # Main game loop
 running = True
 move = 0
+playerTurn = 1
 while running:
     # Handle events
     handleEvents()
@@ -105,19 +110,47 @@ while running:
     # Display welcoming text and button
     if move == 0:
         display_text("Hello, Player!", 3)
-        display_persistent_text("Hand:", 150, window_size[1] - 50)
+        display_persistent_text("Hand:", 140, window_size[1] - 75, 72)
         updateHand(7)
         move += 1
 
-    if display_button("Play card", 150, window_size[1] - 200, 100, 50, (255, 0, 0), (200, 0, 10)):
-        display_text("Card played!", 1.5)
-        updateHand(7)
+    if playerTurn == 1:
+        myturn = True
+    else:
+        myturn = False
     
-    if display_button("Draw card", 250, window_size[1] - 200, 100, 50, (255, 0, 0), (200, 0, 10)):
-        display_text("Card drawn!", 1.5)
-        updateHand(7)
+    # Check if turn
+    if myturn:
+        clearPlaySpace()
+        if display_button("Play card", 150, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
+            display_text("Card played!", 1.5)
+            clearPlaySpace()
+            # Do play card stuff
+            updateHand(7)
+            playerTurn += 1
+            if playerTurn == 5:
+                playerTurn = 1
+        
+        if display_button("Draw card", 250, window_size[1] - 240, 100, 50, (255, 0, 0), (200, 0, 10)): # Spawns button and If button is pressed do this
+            display_text("Card drawn!", 1.5)
+            clearPlaySpace()
+            # Do draw card stuff
+            updateHand(7)
+            playerTurn += 1
+            if playerTurn == 5:
+                playerTurn = 1
+        
+    else:
+        clearPlaySpace()
+        text = "Doing Player " + str(playerTurn) + "'s turn"
+        display_persistent_text(text, 150, window_size[1] - 195, 50)
     
-
+    # If not my turn do next player turn
+    if not myturn:
+        playerTurn += 1
+        time.sleep(.5)
+        if playerTurn == 5:
+            playerTurn = 1
 
     # Update screen
     pygame.display.flip()
