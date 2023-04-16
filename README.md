@@ -82,8 +82,8 @@ pygame.quit()
   With this basic undertsanding, we can get into the process of our game creation!
   
   We first began by creating a simple player class that could operate the functions a computer player might need, which looked something like this:
-  
-    ```bash
+   
+  ```bash
   class Player:
     def __init__(self):
         self.hand = []
