@@ -80,7 +80,7 @@ pygame.quit()
   
   First we need to clarify what multiplayer means in this context. We are not referring to an online multiplayer game that allows you to connect to other players on a server, but simply a game that requires multiple people or *players* in order to properly function.
   
-  With this basic undertsanding, we can get into the process of our game creation!
+  With this basic understanding, we can get into the process of our game creation!
   
   We first began by creating a simple player class that could operate the functions a computer player might need, which looked something like this:
    
